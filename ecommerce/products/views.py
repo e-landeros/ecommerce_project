@@ -17,6 +17,10 @@ class ProductFeaturedDetailView(DetailView):
     queryset = Product.objects.featured()
     template_name = 'products/featured-detail.html'
 
+class ProductFeaturedSlugDetailView(DetailView):
+    queryset = Product.objects.all()
+    template_name = 'products/featured-detail.html'
+
 class ProductListView(ListView):
     #queryset = Product.objects.all()  => overriding
     template_name = 'products/product_list.html'

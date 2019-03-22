@@ -4,7 +4,7 @@ from django.utils.html import format_html
 from .models import Product
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display=('id','title',)
+    list_display=('id','title','slug')
     list_display_links = ('id', 'title',)
 
     # def image_tag(self, obj):

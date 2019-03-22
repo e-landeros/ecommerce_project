@@ -42,7 +42,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('products/',ProductListView.as_view()),
-    path('products/<int:pk>/',ProductDetailView.as_view()),
+    #path('products/<int:pk>/',ProductDetailView.as_view()),
+    path('products/<slig:slug>/',ProductSlugDetailView.as_view()),
 
     path('featured/',ProductFeaturedListView.as_view()),
     path('featured/<int:pk>/',ProductFeaturedDetailView.as_view()),
