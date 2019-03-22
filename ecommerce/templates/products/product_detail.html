@@ -1,5 +1,7 @@
-
+{% if product.image %}
 <img src="{{product.image.url}}" alt="">
+{% endif %}
+
 {{product}}
 <br>
 {{product.description}}
