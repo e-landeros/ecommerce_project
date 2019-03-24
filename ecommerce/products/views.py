@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
 from .models import Product
@@ -33,7 +33,27 @@ class ProductListView(ListView):
     def get_queryset(self, *args, **kwargs):
         request = self.request
         return Product.objects.all()
-    
+        template_name = 'products/product_detail.html'
+
+class ProductDetailSlugView(DetailView):
+    queryset = Product.objects.all()
+    template_name = 'products/product_detail.html'
+
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        slug = self.kwargs.get('slug')
+        instance = get_object_or_404(Product, slug=slug, active=True)
+        try:
+            Product.objects.get(slug=slug, active=True)
+        except Product.DoesNotExist:
+            raise Http404("not found..")
+        except Product.MultipleObjectsReturned:
+            qs = Product.objects.filter(slug=slug, active=true)
+            instance = qs.first()
+        except:
+            raise Http404("uhmm...")
+        return instance
+
 class ProductDetailView(DetailView):
     queryset = Product.objects.all()
     template_name = 'products/product_detail.html'
