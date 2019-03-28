@@ -1,6 +1,10 @@
+{%extends 'base.html' %}
+
+{% block content %}
 {% if product.image %}
 <img src="{{product.image.url}}" alt="">
 {% endif %}
 {{product}}
 <br>
 {{product.description}}
+{% endblock %}

@@ -22,8 +22,8 @@ def contact_page(request):
     context = {
         "form": contact_form,
         'title': 'contact',
-        'content': 'welcome to the contact page'
-        
+        'content': 'welcome to the contact page',
+ 
     }
 
     if  contact_form.is_valid():
