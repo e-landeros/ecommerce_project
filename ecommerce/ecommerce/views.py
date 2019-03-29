@@ -23,7 +23,7 @@ def contact_page(request):
         "form": contact_form,
         'title': 'contact',
         'content': 'welcome to the contact page',
- 
+        'brand': 'new Brand Name'
     }
 
     if  contact_form.is_valid():
