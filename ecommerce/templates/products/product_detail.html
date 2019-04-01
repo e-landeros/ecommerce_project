@@ -1,12 +1,15 @@
 {%extends 'base.html' %}
 
 {% block content %}
-{% if product.image %}
-<img src="{{product.image.url}}" alt="">
-{% endif %}
+    <div class="row">
+        <div class="col">
+            <h1>{{product.title}}</h1>
+            {{product.timestamp|timesince}} ago
+            {% if product.image %}
+            <img src="{{product.image.url}}" alt="">
+            {% endif %} 
 
-{{product}}
-<br>
-{{product.description}}
-
+            {{product.description|linebreaks}} 
+        </div>
+    </div>
 {% endblock %}
