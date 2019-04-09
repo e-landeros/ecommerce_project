@@ -33,7 +33,7 @@ class ProductListView(ListView):
     def get_queryset(self, *args, **kwargs):
         request = self.request
         return Product.objects.all()
-        template_name = 'products/product_detail.html'
+        
 
 class ProductDetailSlugView(DetailView):
     queryset = Product.objects.all()
@@ -48,7 +48,7 @@ class ProductDetailSlugView(DetailView):
         except Product.DoesNotExist:
             raise Http404("not found..")
         except Product.MultipleObjectsReturned:
-            qs = Product.objects.filter(slug=slug, active=true)
+            qs = Product.objects.filter(slug=slug, active=True)
             instance = qs.first()
         except:
             raise Http404("uhmm...")

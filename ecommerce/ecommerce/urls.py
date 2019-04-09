@@ -35,7 +35,8 @@ urlpatterns = [
     path('register/', register_page, name='register'),
     path('admin/', admin.site.urls),
     
-    path('products/', include(("products.urls", "products"),namespace="products"))
+    path('products/', include(("products.urls", "products"),namespace="products")),
+    path('search/', include(("search.urls", "search"), namespace="search"))
 
 ] 
 
