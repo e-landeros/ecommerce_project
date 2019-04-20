@@ -1,4 +1,4 @@
 {
     "python.pythonPath": "/Users/fabian/anaconda/bin/python",
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": false
 }

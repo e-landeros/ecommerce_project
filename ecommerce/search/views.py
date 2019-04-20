@@ -9,4 +9,14 @@ class SearchProductView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         request = self.request
-        return Product.objects.all()
+        method_dict = request.GET
+        print(method_dict)
+        query = request.GET.get('q') # equivilent to method_dict['q'] but get() method doesnt have error on none
+        if query is not None:
+            return Product.objects.filter(title__icontains=query)
+        return Product.objects.none()
+
+        '''
+        __icontains = field contains this
+        __iexact = field is exactly this 
+        '''
