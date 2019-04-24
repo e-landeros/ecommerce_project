@@ -5,16 +5,21 @@ from products.models import Product
 
 class SearchProductView(ListView):
     #queryset = Product.objects.all()  => overriding
-    template_name = 'products/product_list.html'
+    template_name = 'search/view.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(SearchProductView, self).get_context_data(*args, **kwargs)
+        context['query'] = self.request.GET.get('q')
+        return context
 
     def get_queryset(self, *args, **kwargs):
         request = self.request
         method_dict = request.GET
-        print(method_dict)
-        query = request.GET.get('q') # equivilent to method_dict['q'] but get() method doesnt have error on none
+        query = method_dict.get('q')
+        print(query)
         if query is not None:
             return Product.objects.filter(title__icontains=query)
-        return Product.objects.none()
+        return Product.objects.featured()
 
         '''
         __icontains = field contains this
