@@ -9,9 +9,13 @@ class Tag(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.title
+    
+
 
 def tag_pre_save_reciever(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 
-pre_save.connect(product_pre_save_reciever, sender=Tag)
+pre_save.connect(tag_pre_save_reciever, sender=Tag)
