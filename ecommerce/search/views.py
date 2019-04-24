@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView
 
@@ -18,7 +19,7 @@ class SearchProductView(ListView):
         query = method_dict.get('q')
         print(query)
         if query is not None:
-            return Product.objects.filter(title__icontains=query)
+            return Product.objects.search(query)
         return Product.objects.featured()
 
         '''
