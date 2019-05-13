@@ -1,4 +1,8 @@
 from django.shortcuts import render
 
 def cart_home(request):
-    return render(request, 'carts/home.html')
+    #print(request.session)
+    #print(dir(request.session))
+    #key = request.session.session_key
+    #print(key)
+    return render(request, 'carts/home.html', {})
