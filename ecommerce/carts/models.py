@@ -4,6 +4,10 @@ from django.db import models
 from products.models import Product
 
 User = settings.AUTH_USER_MODEL
+
+class CartManager(models.Manager):
+    def new_cart(self, user=None):
+        return self.model.objects.create(user=user)
 class Cart(models.Model):
     user        = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     products    = models.ManyToManyField(Product, blank=True)
