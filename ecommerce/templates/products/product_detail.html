@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6">
             <h1>{{product.title}}</h1>
             {{product.timestamp|timesince}} ago
             {% if product.image %}
@@ -10,6 +10,14 @@
             {% endif %} 
 
             {{product.description|linebreaks}} 
+        </div>
+        <div class="col-12 col-md-6">
+            {{ cart }}
+            {% if object in cart.products.all %}
+            In cart <button class="btn btn-link">Remove?</button>
+            {% else %}
+             <button class="btn btn-success">Add to cart</button>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

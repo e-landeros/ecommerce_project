@@ -59,6 +59,10 @@ def m2m_changed_cart_reciever(sender, instance, action, *args, **kwargs):
 m2m_changed.connect(m2m_changed_cart_reciever, sender=Cart.products.through)
 
 def pre_save_cart_reciever(sender, instance, *args, **kwargs):
-    instance.total = instance.subtotal + 10  #* 1.08 decimal float error here on example taxes
+    if instance.subtotal > 0:
+        instance.total = instance.subtotal + 10  #* 1.08 decimal float error here on example taxes
+    else:
+        instance.total = 0.00
+    
 
 pre_save.connect(pre_save_cart_reciever, sender=Cart)
