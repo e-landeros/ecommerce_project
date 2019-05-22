@@ -44,7 +44,7 @@ class Cart(models.Model):
     def __str__(self):
         return str(self.id)
 
-def pre_save_cart_reciever(sender, instance, action, *args, **kwargs):
+def m2m_changed_cart_reciever(sender, instance, action, *args, **kwargs):
     if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
         products = instance.products.all()
         total = 0 
@@ -54,4 +54,9 @@ def pre_save_cart_reciever(sender, instance, action, *args, **kwargs):
         instance.save()
 
 
-m2m_changed.connect(pre_save_cart_reciever, sender=Cart.products.through)
+m2m_changed.connect(m2m_changed_cart_reciever, sender=Cart.products.through)
+
+def pre_save_cart_reciever(sender, instance, *args, **kwargs):
+    instance.total = instance.subtotal #* 1.08 decimal float error here
+
+pre_save.connect(pre_save_cart_reciever, sender=Cart)
