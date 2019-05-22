@@ -19,7 +19,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from carts.views import cart_home
 
 from .views import (
     home_page, 
@@ -40,7 +39,8 @@ urlpatterns = [
     path('products/', include(("products.urls", "products"),namespace="products")),
     path('search/', include(("search.urls", "search"), namespace="search")),
 
-    path('cart/', cart_home, name='cart'),
+
+    path('cart/', include(("carts.urls", "carts"),namespace="cart")),
 
 ] 
 

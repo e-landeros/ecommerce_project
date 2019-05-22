@@ -9,6 +9,9 @@ def cart_home(request):
     return render(request, 'carts/home.html', {})
 
 def cart_update(request):
+    """
+    Add product many to many field into cart
+    """
     product_id = 1
     product_obj = Product.objects.get(id=product_id)
     cart_obj, new_obj = Cart.objects.new_or_get(request)
