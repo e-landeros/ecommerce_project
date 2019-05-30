@@ -10,7 +10,7 @@ ORDER_STATUS_CHOICES = (
     ('refunded', 'Refunded'),
 )
 class Order(models.Model):
-    order_id        = models.CharField(max_length=120, blank=True)
+    order_id        = models.CharField(max_length=120, blank=True) # random, unique
     # billing_profile = ?
     # shipping address
     # billing address
