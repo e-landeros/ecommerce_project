@@ -14,7 +14,7 @@ class CartManager(models.Manager):
         if qs.count() == 1:
             new_obj = False
             cart_obj = qs.first()
-            if request.user.is_authenticated and cart_obj.user  is None:
+            if request.user.is_authenticated and cart_obj.user is None:
                 cart_obj.user = request.user
                 cart_obj.save()
         else:
@@ -24,7 +24,6 @@ class CartManager(models.Manager):
         return cart_obj, new_obj
 
     def new(self, user=None):
-        print(user)
         user_obj = None
         if user is not None:
             if user.is_authenticated:
