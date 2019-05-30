@@ -24,5 +24,5 @@ def cart_update(request):
             cart_obj.products.remove(product_obj)
         else:
             cart_obj.products.add(product_obj) # add product on many to many field. saved on reciever methods
-
+        request.session['cart_items'] = cart_obj.products.count()
     return redirect("cart:home")
