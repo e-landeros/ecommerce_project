@@ -7,7 +7,7 @@ User = settings.AUTH_USER_MODEL
 # i want one user to have one biling profile when they sign up
 # auto make billing profile when user is created
 class BillingProfile(models.Model):
-    user        = models.ForeignKey(User, null=True, blank=True)
+    user        = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     email       = models.EmailField(max_length=254)
     active      = models.BooleanField(default=True)
     update      = models.TimeField(auto_now=True)
@@ -16,10 +16,10 @@ class BillingProfile(models.Model):
 
     def __str__(self):
         return self.email
-        
+
 # use signals to auto create billing profile on user creation         
 def user_created_reciever(sender, instance, created, *args, **kwargs):
-    if created:
-        BillingProfile.objects.get_or_create(user=instance)
+    if created and instance.email:
+        BillingProfile.objects.get_or_create(user=instance, email=instance.email)
 
 post_save.connect(user_created_reciever, sender=User)
