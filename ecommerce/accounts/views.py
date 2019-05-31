@@ -6,7 +6,7 @@ from django.utils.http import is_safe_url
 from .models import GuestEmail
 from .forms import LoginForm, RegisterForm, GuestForm
 
-def guest_login_view(request):
+def guest_register_view(request):
     form = GuestForm( request.POST or None)
     context = {
         "form":form
@@ -42,7 +42,6 @@ def login_page(request):
                 return redirect(redirect_path)
             else:
                 return redirect("/")
-            #context['form'] = LoginForm()
         else:
             print("error") 
     return render (request, "accounts/login.html", context)
